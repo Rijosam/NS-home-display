@@ -18,9 +18,9 @@ public class MainView extends VerticalLayout {
 
         Grid<TrainInfo> grid = new Grid<>();
         List<TrainInfo> trainInfos = new ArrayList<>();
-        trainInfos.add(new TrainInfo("Utrecht Centraal","09:23:00","3","SPR", false));
-        trainInfos.add(new TrainInfo("Arnhem Centraal","09:47:00","2","ST", false));
-        trainInfos.add(new TrainInfo("Utrecht Centraal","09:53:00","3","SPR", false));
+        trainInfos.add(new TrainInfo("Utrecht Centraal", "09:23:00", "3", "SPR", false));
+        trainInfos.add(new TrainInfo("Arnhem Centraal", "09:47:00", "2", "ST", false));
+        trainInfos.add(new TrainInfo("Utrecht Centraal", "09:53:00", "3", "SPR", false));
 
 
         grid.setItems(trainInfos);
