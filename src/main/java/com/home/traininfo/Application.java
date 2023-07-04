@@ -1,4 +1,4 @@
-package com.home.application;
+package com.home.traininfo;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;

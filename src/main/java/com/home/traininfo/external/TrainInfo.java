@@ -1,4 +1,4 @@
-package com.home.application.model;
+package com.home.traininfo.external;
 
 public record TrainInfo(String direction, String actualDepartureTime, String actualTrack, String trainCategory,
                         Boolean isCancelled) {
