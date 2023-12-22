@@ -1,2 +1,59 @@
-.tr[part=even-row] {background: #3da4db}
-.tr[part=odd-row] {background: #FFF}
+
+vaadin-grid::part(even-row-cell) {
+    background: #EDF2F3
+}
+
+vaadin-grid::part(odd-row-cell) {
+    background: #ccd0e5
+}
+
+vaadin-grid::part(header-cell) {
+    background: #ccd0e5;
+    max-height: 20px;
+    padding-top: 20px;
+}
+
+vaadin-grid::part(first-column-cell) {
+    max-width: 10%;
+}
+
+[part~="platformStyle"] {
+    padding-left: 50%;
+}
+
+[slot~="vaadin-grid-cell-content-2"] {
+    padding-left: 50%;
+}
+
+vaadin-grid::part(row) {
+    height: 15%;
+}
+
+vaadin-grid::part(last-column-cell) {
+    max-width: 20%;
+}
+
+/*this applies to the entire grid's content*/
+vaadin-grid-cell-content {
+    color: #2a3f81;
+    font-weight: bold;
+    font-family: "Arial";
+    min-height: 50px;
+    font-size: larger;
+}
+
+
+body {
+    background: #041c53;
+}
+
+vaadin-grid {
+    height: 750px;
+    width: 80%;
+    left: 10%;
+    bottom: -40px;
+}
+
+
+
+
