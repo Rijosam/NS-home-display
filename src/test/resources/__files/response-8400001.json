@@ -1,0 +1,16 @@
+
+{
+  "timestamp": "2023-09-28T08:17:00+0200",
+  "code": 0,
+  "message": "Not found",
+  "path": "/departures",
+  "exception": "NOT FOUND",
+  "errors": [
+    {
+      "message": "Station name or uiccode provided in the parameters could not be found",
+      "type": "Not found",
+      "lang": "EN"
+    }
+  ],
+  "requestId": "3456"
+}

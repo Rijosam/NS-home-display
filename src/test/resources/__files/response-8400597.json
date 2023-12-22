@@ -1,0 +1,53 @@
+{
+  "payload": {
+    "source": "PPV",
+    "departures": [
+      {
+        "direction": "Arnhem Centraal",
+        "name": "Arriva 31117",
+        "plannedDateTime": "2023-09-28T08:17:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T08:17:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "2",
+        "actualTrack": "2",
+        "product": {
+          "number": "31117",
+          "categoryCode": "ST",
+          "shortCategoryName": "Arriva Stoptrein",
+          "longCategoryName": "Stoptrein",
+          "operatorCode": "Arriva",
+          "operatorName": "Arriva",
+          "type": "TRAIN"
+        },
+        "trainCategory": "ST",
+        "cancelled": true,
+        "routeStations": [
+          {
+            "uicCode": "8400359",
+            "mediumName": "Kesteren"
+          },
+          {
+            "uicCode": "8400494",
+            "mediumName": "Opheusden"
+          },
+          {
+            "uicCode": "8400315",
+            "mediumName": "Hemmen-Dodew."
+          },
+          {
+            "uicCode": "8400207",
+            "mediumName": "Elst"
+          }
+        ],
+        "messages": [
+          {
+            "message": "Stopt niet in Arnhem Zuid",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "ON_STATION"
+      }
+    ]
+  }
+}

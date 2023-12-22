@@ -1,0 +1,278 @@
+{
+  "payload": {
+    "source": "PPV",
+    "departures": [
+      {
+        "direction": "Arnhem Centraal",
+        "name": "Arriva 31117",
+        "plannedDateTime": "2023-09-28T08:17:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T08:17:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "2",
+        "actualTrack": "2",
+        "product": {
+          "number": "31117",
+          "categoryCode": "ST",
+          "shortCategoryName": "Arriva Stoptrein",
+          "longCategoryName": "Stoptrein",
+          "operatorCode": "Arriva",
+          "operatorName": "Arriva",
+          "type": "TRAIN"
+        },
+        "trainCategory": "ST",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400359",
+            "mediumName": "Kesteren"
+          },
+          {
+            "uicCode": "8400494",
+            "mediumName": "Opheusden"
+          },
+          {
+            "uicCode": "8400315",
+            "mediumName": "Hemmen-Dodew."
+          },
+          {
+            "uicCode": "8400207",
+            "mediumName": "Elst"
+          }
+        ],
+        "messages": [
+          {
+            "message": "Stopt niet in Arnhem Zuid",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "ON_STATION"
+      },
+      {
+        "direction": "Den Haag Centraal",
+        "name": "NS  6924",
+        "plannedDateTime": "2023-09-28T08:23:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T08:23:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "3",
+        "actualTrack": "3",
+        "product": {
+          "number": "6924",
+          "categoryCode": "SPR",
+          "shortCategoryName": "NS Sprinter",
+          "longCategoryName": "Sprinter",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "SPR",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400244",
+            "mediumName": "Geldermalsen"
+          },
+          {
+            "uicCode": "8400340",
+            "mediumName": "Houten"
+          },
+          {
+            "uicCode": "8400606",
+            "mediumName": "Vaartsche Rijn"
+          },
+          {
+            "uicCode": "8400621",
+            "mediumName": "Utrecht C."
+          }
+        ],
+        "messages": [
+          {
+            "message": "Treinstel 2604 rijdt niet verder dan Utrecht Centraal",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "ON_STATION"
+      },
+      {
+        "direction": "Arnhem Centraal",
+        "name": "Arriva 31119",
+        "plannedDateTime": "2023-09-28T08:47:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T08:47:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "2",
+        "actualTrack": "2",
+        "product": {
+          "number": "31119",
+          "categoryCode": "ST",
+          "shortCategoryName": "Arriva Stoptrein",
+          "longCategoryName": "Stoptrein",
+          "operatorCode": "Arriva",
+          "operatorName": "Arriva",
+          "type": "TRAIN"
+        },
+        "trainCategory": "ST",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400359",
+            "mediumName": "Kesteren"
+          },
+          {
+            "uicCode": "8400494",
+            "mediumName": "Opheusden"
+          },
+          {
+            "uicCode": "8400315",
+            "mediumName": "Hemmen-Dodew."
+          },
+          {
+            "uicCode": "8400207",
+            "mediumName": "Elst"
+          }
+        ],
+        "messages": [
+          {
+            "message": "Stopt niet in Arnhem Zuid",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "INCOMING"
+      },
+      {
+        "direction": "Den Haag Centraal",
+        "name": "NS  6926",
+        "plannedDateTime": "2023-09-28T08:53:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T08:53:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "3",
+        "actualTrack": "3",
+        "product": {
+          "number": "6926",
+          "categoryCode": "SPR",
+          "shortCategoryName": "NS Sprinter",
+          "longCategoryName": "Sprinter",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "SPR",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400244",
+            "mediumName": "Geldermalsen"
+          },
+          {
+            "uicCode": "8400340",
+            "mediumName": "Houten"
+          },
+          {
+            "uicCode": "8400606",
+            "mediumName": "Vaartsche Rijn"
+          },
+          {
+            "uicCode": "8400621",
+            "mediumName": "Utrecht C."
+          }
+        ],
+        "messages": [],
+        "departureStatus": "INCOMING"
+      },
+      {
+        "direction": "Arnhem Centraal",
+        "name": "Arriva 31121",
+        "plannedDateTime": "2023-09-28T09:17:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T09:17:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "2",
+        "actualTrack": "2",
+        "product": {
+          "number": "31121",
+          "categoryCode": "ST",
+          "shortCategoryName": "Arriva Stoptrein",
+          "longCategoryName": "Stoptrein",
+          "operatorCode": "Arriva",
+          "operatorName": "Arriva",
+          "type": "TRAIN"
+        },
+        "trainCategory": "ST",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400359",
+            "mediumName": "Kesteren"
+          },
+          {
+            "uicCode": "8400494",
+            "mediumName": "Opheusden"
+          },
+          {
+            "uicCode": "8400315",
+            "mediumName": "Hemmen-Dodew."
+          },
+          {
+            "uicCode": "8400207",
+            "mediumName": "Elst"
+          }
+        ],
+        "messages": [
+          {
+            "message": "Stopt niet in Arnhem Zuid",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "INCOMING"
+      },
+      {
+        "direction": "Den Haag Centraal",
+        "name": "NS  6928",
+        "plannedDateTime": "2023-09-28T09:23:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2023-09-28T09:23:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "3",
+        "actualTrack": "3",
+        "product": {
+          "number": "6928",
+          "categoryCode": "SPR",
+          "shortCategoryName": "NS Sprinter",
+          "longCategoryName": "Sprinter",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "SPR",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400244",
+            "mediumName": "Geldermalsen"
+          },
+          {
+            "uicCode": "8400340",
+            "mediumName": "Houten"
+          },
+          {
+            "uicCode": "8400606",
+            "mediumName": "Vaartsche Rijn"
+          },
+          {
+            "uicCode": "8400621",
+            "mediumName": "Utrecht C."
+          }
+        ],
+        "messages": [
+          {
+            "message": "Treinstel 2430 rijdt niet verder dan Utrecht Centraal",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "INCOMING"
+      }
+    ]
+  }
+}

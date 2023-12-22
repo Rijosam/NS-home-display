@@ -1,0 +1,16 @@
+
+{
+  "timestamp": "2023-09-28T08:17:00+0200",
+  "code": 0,
+  "message": "Bad request",
+  "path": "/departures",
+  "exception": "BAD REQUEST",
+  "errors": [
+    {
+      "message": "One or more parameters are invalid",
+      "type": "Bad request",
+      "lang": "EN"
+    }
+  ],
+  "requestId": "3456"
+}

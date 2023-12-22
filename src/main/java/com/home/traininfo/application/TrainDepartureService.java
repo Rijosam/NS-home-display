@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TrainDepartureService {
 
-    List<TrainDeparture> getDepartureInfoService();
+    List<TrainDeparture> getDepartureInfo();
 }
 
