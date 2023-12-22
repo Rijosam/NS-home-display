@@ -6,7 +6,6 @@ import java.util.List;
 public record Departure(
         String direction,
         String name,
-
         String plannedDateTime,
         Integer plannedTimeZoneOffset,
         String actualDateTime,
@@ -18,9 +17,7 @@ public record Departure(
         String journeyDetailRef,
         List<RouteStation> routeStations,
         List<Message> messages,
-        String departureStatus
-
-) {
+        String departureStatus) {
 }
 
 
