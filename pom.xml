@@ -5,13 +5,26 @@
     <groupId>com.home.application</groupId>
     <artifactId>NS-home-display</artifactId>
     <name>NS-home-display</name>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>17</java.version>
         <vaadin.version>24.1.1</vaadin.version>
         <selenium.version>4.10.0</selenium.version>
+        <main.class>com.home.traininfo.Application</main.class>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <line-awesome.version>1.1.0</line-awesome.version>
+        <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
+        <spring-boot-starter-jersey.version>3.1.1</spring-boot-starter-jersey.version>
+        <jakarta.json-api.version>2.1.1</jakarta.json-api.version>
+        <jakarta.json.bind-api.version>3.0.0</jakarta.json.bind-api.version>
+        <log4j-api.version>2.22.0</log4j-api.version>
+        <parsson.version>1.1.1</parsson.version>
+        <yasson.version>3.0.3</yasson.version>
+        <wiremock.version>3.3.1</wiremock.version>
     </properties>
 
     <parent>
@@ -55,12 +68,18 @@
         <dependency>
             <groupId>org.parttio</groupId>
             <artifactId>line-awesome</artifactId>
-            <version>1.1.0</version>
+            <version>${line-awesome.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,38 +99,76 @@
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>3.1.0</version>
+            <version>${jakarta.ws.rs-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
-            <version>3.1.1</version>
+            <version>${spring-boot-starter-jersey.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
-            <version>2.1.1</version>
+            <version>${jakarta.json-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
-            <version>3.0.0</version>
+            <version>${jakarta.json.bind-api.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-api.version}</version>
+        </dependency>
+
 
         <!-- JSON-P and JSON-B implementation required at deployment time -->
         <dependency>
             <groupId>org.eclipse.parsson</groupId>
             <artifactId>parsson</artifactId>
-            <version>1.1.1</version>
+            <version>${parsson.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
-            <version>3.0.3</version>
+            <version>${yasson.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>${wiremock.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId> commons-fileupload</groupId>
+                    <artifactId>commons-fileupload</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-xml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -135,6 +192,65 @@
                     <execution>
                         <goals>
                             <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+            https://maven.apache.org/plugins/maven-compiler-plugin/
+            The Compiler Plugin is used to compile the sources of your project.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <verbose>false</verbose>
+                </configuration>
+            </plugin>
+
+            <!--
+            https://maven.apache.org/plugins/maven-jar-plugin/
+            This plugin provides the capability to build (executable) jars and is used here to set the mainClass
+            which will start the application.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!--
+            https://maven.apache.org/plugins/maven-shade-plugin/
+            This plugin provides the capability to package the artifact in an uber-jar, including its dependencies and
+            to shade - i.e. rename - the packages of some of the dependencies. The transformer will combine the files
+            in the META-INF.services directories of multiple Pi4J plugins with the same package name into one file.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -208,22 +324,6 @@
                     </plugin>
 
                     <!-- Runs the integration tests (*IT) after the server is started -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <trimStackTrace>false</trimStackTrace>
-                            <enableAssertions>true</enableAssertions>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
