@@ -25,11 +25,11 @@ public class MainView extends VerticalLayout {
             List<TrainDeparture> trainDepartures = trainDepartureService.getDepartureInfo();
             grid.setItems(trainDepartures);
             grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
-            grid.addColumn(TrainDeparture::actualDepartureTime).setHeader("Depart");
-            grid.addColumn(createDirectionRenderer()).setHeader("Direction").setAutoWidth(true).setFlexGrow(0);
-            grid.addColumn(createPlatformRenderer()).setHeader("Platform");
-            grid.addColumn(TrainDeparture::trainCategory).setHeader("Train");
-            grid.addColumn(createStatusComponentRenderer()).setHeader("Status");
+            grid.addColumn(TrainDeparture::actualDepartureTime).setHeader("DEPART");
+            grid.addColumn(createDirectionRenderer()).setHeader("DIRECTION").setAutoWidth(true).setFlexGrow(0);
+            grid.addColumn(createPlatformRenderer()).setHeader("PLATFORM");
+            grid.addColumn(createTrainTypeRenderer()).setHeader("TRAIN");
+            grid.addColumn(createStatusComponentRenderer()).setHeader("STATUS");
             add(grid);
     }
 
@@ -39,7 +39,7 @@ public class MainView extends VerticalLayout {
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
                                 + "  <vaadin-vertical-layout style=\"line-height: var(--lumo-line-height-m);\">"
                                 + "    <span> ${item.direction} </span>"
-                                + "    <span style=\"font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);\">"
+                                + "    <span style=\"font-size: var(--lumo-font-size-xl); color: var(--lumo-secondary-text-color);\">"
                                 + "    via ${item.routeStations}" + "    </span>"
                                 + "  </vaadin-vertical-layout>"
                                 + "</vaadin-horizontal-layout>")
@@ -55,6 +55,14 @@ public class MainView extends VerticalLayout {
                 .withProperty("actualTrack", TrainDeparture::actualTrack);
     }
 
+    private static Renderer<TrainDeparture> createTrainTypeRenderer() {
+        return LitRenderer.<TrainDeparture> of(
+                        "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
+                                + "    <span part=\"trainTypeStyle\"> ${item.trainCategory} </span>"
+                                + "</vaadin-horizontal-layout>")
+                .withProperty("trainCategory", TrainDeparture::trainCategory);
+    }
+
     private static ComponentRenderer<Span, TrainDeparture> createStatusComponentRenderer() {
         return new ComponentRenderer<>(Span::new, statusComponentUpdater);
     }
@@ -62,6 +70,7 @@ public class MainView extends VerticalLayout {
     private static final SerializableBiConsumer<Span, TrainDeparture> statusComponentUpdater
             = (span, trainDeparture) -> {
         span.getElement().setAttribute("theme", getTheme(trainDeparture.status()));
+        span.getStyle().set("font-size","var(--lumo-font-size-xl)");
         span.setText(trainDeparture.status().name().replace('_', ' '));
     };
 

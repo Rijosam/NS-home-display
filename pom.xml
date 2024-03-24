@@ -5,7 +5,7 @@
     <groupId>com.home.application</groupId>
     <artifactId>NS-home-display</artifactId>
     <name>NS-home-display</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>

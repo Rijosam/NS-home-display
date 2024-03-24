@@ -10,23 +10,33 @@ vaadin-grid::part(odd-row-cell) {
 vaadin-grid::part(header-cell) {
     background: #ccd0e5;
     max-height: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
+    /*font-size: larger !important;*/
 }
 
 vaadin-grid::part(first-column-cell) {
-    max-width: 10%;
+    max-width: 15%;
 }
 
 [part~="platformStyle"] {
-    padding-left: 50%;
+    padding-left: 34%;
+}
+
+[part~="trainTypeStyle"] {
+    padding-left: 20%;
 }
 
 [slot~="vaadin-grid-cell-content-2"] {
-    padding-left: 50%;
+    padding-left: 1%;
 }
 
+[slot~="vaadin-grid-cell-content-3"] {
+    padding-left: 20%;
+}
+
+
 vaadin-grid::part(row) {
-    height: 15%;
+    height: 20%;
 }
 
 vaadin-grid::part(last-column-cell) {
@@ -39,7 +49,7 @@ vaadin-grid-cell-content {
     font-weight: bold;
     font-family: "Arial";
     min-height: 50px;
-    font-size: larger;
+    font-size: xxx-large;
 }
 
 
@@ -48,9 +58,9 @@ body {
 }
 
 vaadin-grid {
-    height: 750px;
-    width: 80%;
-    left: 10%;
+    height: 840px;
+    width: 90%;
+    left: 4%;
     bottom: -40px;
 }
 

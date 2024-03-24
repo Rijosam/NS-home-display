@@ -78,7 +78,8 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
     private DeparturesPayload getDeparturesPayload(Response response) {
         var departuresPayload = jsonb.fromJson
                 (response.readEntity(String.class), DeparturesPayload.class);
-        log.info("Response {}", departuresPayload);
+        log.info("Response received");
+        log.debug("Response {}", departuresPayload);
         return departuresPayload;
     }
 
