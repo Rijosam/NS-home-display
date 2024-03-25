@@ -66,7 +66,7 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
     }
 
     private Response getTrainsInfo(final String stationUicCode) {
-        log.info("Calling NS API");
+        log.debug("Calling NS API");
         return getWebTarget(getUri(stationUicCode)).request()
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CACHE_CONTROL, "no-cache")
@@ -78,7 +78,6 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
     private DeparturesPayload getDeparturesPayload(Response response) {
         var departuresPayload = jsonb.fromJson
                 (response.readEntity(String.class), DeparturesPayload.class);
-        log.info("Response received");
         log.debug("Response {}", departuresPayload);
         return departuresPayload;
     }

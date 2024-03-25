@@ -87,21 +87,21 @@ class TrainDepartureServiceTest {
 
 
     void setStubs() {
-        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400597&maxJourneys=6"))
+        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400597&maxJourneys=5"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBodyFile("response-8400597.json")));
 
-        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400596&maxJourneys=6"))
+        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400596&maxJourneys=5"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBodyFile("response-8400596.json")));
 
-        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=840000&maxJourneys=6"))
+        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=840000&maxJourneys=5"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withStatus(HttpStatus.SC_BAD_REQUEST).withBodyFile("response-8400000.json")));
-      wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=840001&maxJourneys=6"))
+      wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=840001&maxJourneys=5"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withStatus(HttpStatus.SC_NOT_FOUND).withBodyFile("response-8400001.json")));

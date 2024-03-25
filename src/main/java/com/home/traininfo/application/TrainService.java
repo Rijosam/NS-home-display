@@ -33,18 +33,6 @@ public class TrainService implements TrainDepartureService {
                 trainInfo.direction(), trainInfo.actualDepartureTime(),
                 trainInfo.actualTrack(), trainInfo.trainCategory(),
                 trainInfo.routeStations(), trainInfo.getStatus(),
-                getTimeToDeparture(trainInfo.actualDepartureTime()));
-    }
-
-    private String getTimeToDeparture(String actualDepartureTime) {
-        var timeToDepartureDuration = Duration.between(LocalTime.now(),
-                LocalTime.parse(actualDepartureTime));
-        if (timeToDepartureDuration.toHours() == 0) {
-            return timeToDepartureDuration.toMinutes() + " min";
-        }
-        else {
-            return timeToDepartureDuration.toHours() + " hr "
-                    + timeToDepartureDuration.toMinutesPart() + " min";
-        }
+                trainInfo.getFormattedTimeToDeparture());
     }
 }
