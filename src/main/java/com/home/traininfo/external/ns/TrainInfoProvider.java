@@ -95,7 +95,7 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
         return UriBuilder
                 .fromUri(baseUrl).path(uriPath)
                 .queryParam("uicCode", stationUicCode)
-                .queryParam("maxJourneys", 6)
+                .queryParam("maxJourneys", 5)
                 .build();
     }
 

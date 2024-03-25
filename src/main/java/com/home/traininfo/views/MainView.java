@@ -20,22 +20,22 @@ import java.util.List;
 @Route(value = "")
 public class MainView extends VerticalLayout {
 
-    public MainView(final TrainDepartureService trainDepartureService)  {
-            Grid<TrainDeparture> grid = new Grid<>();
-            List<TrainDeparture> trainDepartures = trainDepartureService.getDepartureInfo();
-            grid.setItems(trainDepartures);
-            grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
-            grid.addColumn(TrainDeparture::actualDepartureTime).setHeader("DEPART");
-            grid.addColumn(createDirectionRenderer()).setHeader("DIRECTION").setAutoWidth(true).setFlexGrow(0);
-            grid.addColumn(createPlatformRenderer()).setHeader("PLATFORM");
-            grid.addColumn(createTrainTypeRenderer()).setHeader("TRAIN");
-            grid.addColumn(createStatusComponentRenderer()).setHeader("STATUS");
-            add(grid);
+    public MainView(final TrainDepartureService trainDepartureService) {
+        Grid<TrainDeparture> grid = new Grid<>();
+        List<TrainDeparture> trainDepartures = trainDepartureService.getDepartureInfo();
+        grid.setItems(trainDepartures);
+        grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
+        grid.addColumn(TrainDeparture::actualDepartureTime).setHeader("DEPART");
+        grid.addColumn(createDirectionRenderer()).setHeader("DIRECTION").setAutoWidth(true).setFlexGrow(0);
+        grid.addColumn(createPlatformRenderer()).setHeader("PLATFORM");
+        grid.addColumn(createStatusComponentRenderer()).setHeader("STATUS");
+        grid.addColumn(createTimeToDepartureRenderer()).setHeader("DEPART IN");
+        add(grid);
     }
 
 
     private static Renderer<TrainDeparture> createDirectionRenderer() {
-        return LitRenderer.<TrainDeparture> of(
+        return LitRenderer.<TrainDeparture>of(
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
                                 + "  <vaadin-vertical-layout style=\"line-height: var(--lumo-line-height-m);\">"
                                 + "    <span> ${item.direction} </span>"
@@ -48,19 +48,19 @@ public class MainView extends VerticalLayout {
     }
 
     private static Renderer<TrainDeparture> createPlatformRenderer() {
-        return LitRenderer.<TrainDeparture> of(
+        return LitRenderer.<TrainDeparture>of(
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
                                 + "    <span part=\"platformStyle\"> ${item.actualTrack} </span>"
                                 + "</vaadin-horizontal-layout>")
                 .withProperty("actualTrack", TrainDeparture::actualTrack);
     }
 
-    private static Renderer<TrainDeparture> createTrainTypeRenderer() {
-        return LitRenderer.<TrainDeparture> of(
+    private static Renderer<TrainDeparture> createTimeToDepartureRenderer() {
+        return LitRenderer.<TrainDeparture>of(
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
-                                + "    <span part=\"trainTypeStyle\"> ${item.trainCategory} </span>"
+                                + "    <span part=\"trainTypeStyle\">${item.trainCategory} min </span>"
                                 + "</vaadin-horizontal-layout>")
-                .withProperty("trainCategory", TrainDeparture::trainCategory);
+                .withProperty("trainCategory", TrainDeparture::timeToDeparture);
     }
 
     private static ComponentRenderer<Span, TrainDeparture> createStatusComponentRenderer() {
@@ -70,7 +70,7 @@ public class MainView extends VerticalLayout {
     private static final SerializableBiConsumer<Span, TrainDeparture> statusComponentUpdater
             = (span, trainDeparture) -> {
         span.getElement().setAttribute("theme", getTheme(trainDeparture.status()));
-        span.getStyle().set("font-size","var(--lumo-font-size-xl)");
+        span.getStyle().set("font-size", "var(--lumo-font-size-xxl)");
         span.setText(trainDeparture.status().name().replace('_', ' '));
     };
 

@@ -6,6 +6,8 @@ import com.home.traininfo.external.TrainInfoProviderClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -30,6 +32,13 @@ public class TrainService implements TrainDepartureService {
         return new TrainDeparture(
                 trainInfo.direction(), trainInfo.actualDepartureTime(),
                 trainInfo.actualTrack(), trainInfo.trainCategory(),
-                trainInfo.routeStations(), trainInfo.getStatus());
+                trainInfo.routeStations(), trainInfo.getStatus(),
+                getTimeToDeparture(trainInfo.actualDepartureTime())
+                );
+    }
+
+    private String getTimeToDeparture(String actualDepartureTime) {
+        return String.valueOf(Duration.between(LocalTime.now(),
+                LocalTime.parse(actualDepartureTime)).toMinutes());
     }
 }
