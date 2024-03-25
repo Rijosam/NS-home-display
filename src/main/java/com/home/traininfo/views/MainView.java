@@ -58,7 +58,7 @@ public class MainView extends VerticalLayout {
     private static Renderer<TrainDeparture> createTimeToDepartureRenderer() {
         return LitRenderer.<TrainDeparture>of(
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
-                                + "    <span part=\"trainTypeStyle\">${item.trainCategory} min </span>"
+                                + "    <span part=\"trainTypeStyle\">${item.trainCategory}</span>"
                                 + "</vaadin-horizontal-layout>")
                 .withProperty("trainCategory", TrainDeparture::timeToDeparture);
     }
