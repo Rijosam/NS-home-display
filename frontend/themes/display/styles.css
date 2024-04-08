@@ -26,14 +26,14 @@ vaadin-grid::part(first-column-cell) {
     padding-left: 20%;
 }
 
+[part~="departInStyle"] {
+    padding-left: 0%;
+}
+
+
 [slot~="vaadin-grid-cell-content-2"] {
     padding-left: 1%;
 }
-
-[slot~="vaadin-grid-cell-content-3"] {
-    padding-left: 20%;
-}
-
 
 vaadin-grid::part(row) {
     height: 20%;
@@ -59,9 +59,9 @@ body {
 
 vaadin-grid {
     height: 900px;
-    width: 100%;
+    width: 95%;
     left: 2%;
-    bottom: -51px;
+    bottom: -70px;
 }
 
 
