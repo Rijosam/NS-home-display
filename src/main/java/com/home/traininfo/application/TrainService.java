@@ -6,8 +6,7 @@ import com.home.traininfo.external.TrainInfoProviderClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -15,15 +14,22 @@ public class TrainService implements TrainDepartureService {
 
     private final String stationUicCode;
     private final TrainInfoProviderClient infoProvider;
+    private final NightTimeChecker nightTimeChecker;
+
 
     public TrainService(@Value("${stationUicCode}") String stationUicCode,
-                        TrainInfoProviderClient infoProvider) {
+                        TrainInfoProviderClient infoProvider,
+                        NightTimeChecker nightTimeChecker) {
         this.stationUicCode = stationUicCode;
         this.infoProvider = infoProvider;
+        this.nightTimeChecker = nightTimeChecker;
     }
 
     @Override
     public List<TrainDeparture> getDepartureInfo() {
+        if (nightTimeChecker.isNightTime()){
+            return Collections.emptyList();
+        }
         var departureTrains = infoProvider.getDepartureTrains(stationUicCode);
         return departureTrains.stream().map(this::getTrainDeparture).toList();
     }

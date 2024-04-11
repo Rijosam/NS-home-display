@@ -2,11 +2,10 @@ package com.home.traininfo.external.ns;
 
 import com.home.traininfo.external.TrainInfo;
 import com.home.traininfo.external.TrainInfoProviderClient;
+import com.home.traininfo.external.webtargetprovider.WebTargetProvider;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.ws.rs.ProcessingException;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
@@ -19,27 +18,28 @@ import org.springframework.stereotype.Service;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
-public class TrainInfoProvider implements TrainInfoProviderClient {
+public class NSInfoProviderClient implements TrainInfoProviderClient {
 
     private static final Jsonb jsonb = JsonbBuilder.create();
 
     private final String baseUrl;
     private final String uriPath;
     private final String subscriptionKey;
+    private final WebTargetProvider webTargetProvider;
 
-    private static final Logger log = LoggerFactory
-            .getLogger(TrainInfoProvider.class);
+    private static final Logger log = LoggerFactory.getLogger(NSInfoProviderClient.class);
 
-    public TrainInfoProvider(@Value("${baseUrl}")String baseUrl,
-                             @Value("${uriPath}")String uriPath,
-                             @Value("${subscriptionKey}") String subscriptionKey) {
+    public NSInfoProviderClient(@Value("${baseUrl}") String baseUrl,
+                                @Value("${uriPath}") String uriPath,
+                                @Value("${subscriptionKey}") String subscriptionKey,
+                                WebTargetProvider webTargetProvider) {
         this.baseUrl = baseUrl;
         this.uriPath = uriPath;
         this.subscriptionKey = subscriptionKey;
+        this.webTargetProvider = webTargetProvider;
     }
 
     @Override
@@ -53,8 +53,7 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
                         .stream()
                         .map(this::getTrainsInfo)
                         .toList();
-            }
-            else {
+            } else {
                 log.error("Reisinformatie-api response with status {} and message {}",
                         response.getStatus(), response.readEntity(String.class));
                 return Collections.emptyList();
@@ -66,8 +65,8 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
     }
 
     private Response getTrainsInfo(final String stationUicCode) {
-        log.debug("Calling NS API");
-        return getWebTarget(getUri(stationUicCode)).request()
+        log.info("Calling NS API");
+        return webTargetProvider.getWebTarget(getUri(stationUicCode)).request()
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CACHE_CONTROL, "no-cache")
                 .header("Ocp-Apim-Subscription-Key", subscriptionKey)
@@ -80,14 +79,6 @@ public class TrainInfoProvider implements TrainInfoProviderClient {
                 (response.readEntity(String.class), DeparturesPayload.class);
         log.debug("Response {}", departuresPayload);
         return departuresPayload;
-    }
-
-    private WebTarget getWebTarget(URI uri) {
-        return ClientBuilder.newBuilder()
-                .connectTimeout(3000, TimeUnit.MILLISECONDS)
-                .readTimeout(3000, TimeUnit.MILLISECONDS)
-                .build()
-                .target(uri);
     }
 
     private URI getUri(String stationUicCode) {

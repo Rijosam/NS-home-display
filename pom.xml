@@ -58,7 +58,6 @@
     <dependencies>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <!-- Replace artifactId with vaadin-core to use only free components -->
             <artifactId>vaadin-core</artifactId>
         </dependency>
         <dependency>
@@ -104,7 +103,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
-            <version>${spring-boot-starter-jersey.version}</version>
         </dependency>
 
         <dependency>
@@ -133,7 +131,6 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j-api.version}</version>
         </dependency>
-
 
         <!-- JSON-P and JSON-B implementation required at deployment time -->
         <dependency>
@@ -256,10 +253,27 @@
                 </executions>
             </plugin>
 
-
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.14.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>com.home.traininfo.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.home.traininfo.*</param>
+                    </targetTests>
+                </configuration>
+            </plugin>
         </plugins>
-
-
     </build>
 
     <profiles>
