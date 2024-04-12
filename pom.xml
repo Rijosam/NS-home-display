@@ -10,7 +10,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <vaadin.version>24.1.1</vaadin.version>
+        <vaadin.version>24.3.9</vaadin.version>
         <selenium.version>4.10.0</selenium.version>
         <main.class>com.home.traininfo.Application</main.class>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -22,15 +22,15 @@
         <jakarta.json-api.version>2.1.1</jakarta.json-api.version>
         <jakarta.json.bind-api.version>3.0.0</jakarta.json.bind-api.version>
         <log4j-api.version>2.22.0</log4j-api.version>
-        <parsson.version>1.1.1</parsson.version>
+        <parsson.version>1.1.6</parsson.version>
         <yasson.version>3.0.3</yasson.version>
-        <wiremock.version>3.3.1</wiremock.version>
+        <wiremock.version>3.5.2</wiremock.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.4</version>
     </parent>
 
     <repositories>
