@@ -9,7 +9,7 @@ import com.home.traininfo.external.TrainInfoProviderClient;
 import com.home.traininfo.external.webtargetprovider.JerseyWebTargetProvider;
 import com.home.traininfo.external.webtargetprovider.WebTargetProvider;
 import com.home.traininfo.external.ns.NSInfoProviderClient;
-import org.apache.http.HttpStatus;
+import org.apache.hc.core5.http.HttpStatus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -25,6 +25,7 @@
         <parsson.version>1.1.6</parsson.version>
         <yasson.version>3.0.3</yasson.version>
         <wiremock.version>3.5.2</wiremock.version>
+        <httpclient5.version>5.3.1</httpclient5.version>
     </properties>
 
     <parent>
@@ -145,25 +146,19 @@
             <version>${yasson.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <!--jetty 12 from springboot3.2 is not supported by wiremock
+        As a workaround,wiremock package is replaced by standalone fat jar
+        -->
         <dependency>
             <groupId>org.wiremock</groupId>
-            <artifactId>wiremock</artifactId>
+            <artifactId>wiremock-standalone</artifactId>
             <version>${wiremock.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId> commons-fileupload</groupId>
-                    <artifactId>commons-fileupload</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-xml</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>${httpclient5.version}</version>
         </dependency>
 
     </dependencies>
