@@ -7,5 +7,6 @@ import java.util.List;
 public interface TrainDepartureService {
 
     List<TrainDeparture> getDepartureInfo();
+    void setStationUicCode(String stationUicCode);
 }
 

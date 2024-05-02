@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class TrainService implements TrainDepartureService {
 
-    private final String stationUicCode;
+    private String stationUicCode;
     private final TrainInfoProviderClient infoProvider;
     private final NightTimeChecker nightTimeChecker;
 
@@ -41,5 +41,10 @@ public class TrainService implements TrainDepartureService {
                 trainInfo.routeStations(), trainInfo.getStatus(),
                 trainInfo.getFormattedTimeToDeparture(),
                 trainInfo.getDepartureDelayInMinutes());
+    }
+
+    @Override
+    public void setStationUicCode(String stationUicCode) {
+        this.stationUicCode = stationUicCode;
     }
 }
