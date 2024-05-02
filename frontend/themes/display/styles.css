@@ -57,6 +57,18 @@ body {
     background: #041c53;
 }
 
+vaadin-combo-box {
+    background-color: white;
+    font-size: xx-large;
+    padding: 30px;
+}
+
+vaadin-combo-box-item {
+    font-size: x-large;
+    padding: 50px;
+}
+
+
 vaadin-grid {
     height: 900px;
     width: 95%;
