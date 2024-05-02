@@ -65,7 +65,7 @@ public class NSInfoProviderClient implements TrainInfoProviderClient {
     }
 
     private Response getTrainsInfo(final String stationUicCode) {
-        log.info("Calling NS API");
+        log.debug("Calling NS API");
         return webTargetProvider.getWebTarget(getUri(stationUicCode)).request()
                 .accept(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CACHE_CONTROL, "no-cache")
