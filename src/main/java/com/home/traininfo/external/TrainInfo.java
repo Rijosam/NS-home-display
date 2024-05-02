@@ -1,11 +1,13 @@
 package com.home.traininfo.external;
 
 import com.home.traininfo.domain.Status;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
 public record TrainInfo(String direction,
+                        String plannedDepartureTime,
                         String actualDepartureTime,
                         String actualTrack,
                         String trainCategory,
@@ -31,6 +33,16 @@ public record TrainInfo(String direction,
             return hours + " hr";
         } else {
             return hours + " hr " + minutes + " min";
+        }
+    }
+
+    public String getDepartureDelayInMinutes() {
+        if (plannedDepartureTime.equals(actualDepartureTime)) {
+            return StringUtils.EMPTY;
+        } else {
+            var departureDelay = Duration.between(LocalTime.parse(plannedDepartureTime),
+                    LocalTime.parse(actualDepartureTime));
+            return String.valueOf(departureDelay.toMinutes());
         }
     }
 }

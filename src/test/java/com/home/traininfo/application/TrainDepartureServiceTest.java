@@ -59,13 +59,13 @@ class TrainDepartureServiceTest {
                 () -> assertEquals(1,departureInfo.size()),
                 () -> assertEquals("Utrecht Centraal", departureInfo.get(0).direction()),
                 () -> assertEquals("SP", departureInfo.get(0).trainCategory()),
-                () -> assertEquals("08:12", departureInfo.get(0).actualDepartureTime()),
+                () -> assertEquals("08:12", departureInfo.get(0).departureTime()),
                 () -> assertEquals("3", departureInfo.get(0).actualTrack()),
                 () -> assertEquals(Status.INCOMING, departureInfo.get(0).status()));
     }
 
     private static @NotNull TrainInfo getTrainInfo() {
-        return new TrainInfo("Utrecht Centraal", "08:12",
+        return new TrainInfo("Utrecht Centraal", "08:12","08:15",
                 "3", "SP", "Geldermalsen",
                 "INCOMING", false);
     }

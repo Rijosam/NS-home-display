@@ -36,9 +36,10 @@ public class TrainService implements TrainDepartureService {
 
     private TrainDeparture getTrainDeparture(TrainInfo trainInfo) {
         return new TrainDeparture(
-                trainInfo.direction(), trainInfo.actualDepartureTime(),
+                trainInfo.direction(), trainInfo.plannedDepartureTime(),
                 trainInfo.actualTrack(), trainInfo.trainCategory(),
                 trainInfo.routeStations(), trainInfo.getStatus(),
-                trainInfo.getFormattedTimeToDeparture());
+                trainInfo.getFormattedTimeToDeparture(),
+                trainInfo.getDepartureDelayInMinutes());
     }
 }

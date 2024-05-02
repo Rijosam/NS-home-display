@@ -91,6 +91,7 @@ public class NSInfoProviderClient implements TrainInfoProviderClient {
 
     private TrainInfo getTrainsInfo(Departure departure) {
         return new TrainInfo(departure.direction(),
+                departure.plannedDateTime().substring(11, 16),
                 departure.actualDateTime().substring(11, 16),
                 departure.actualTrack(), departure.trainCategory(),
                 getRouteStations(departure.routeStations()),

@@ -1,13 +1,14 @@
 package com.home.traininfo.external;
 
 import com.home.traininfo.domain.Status;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TrainInfoTest {
 
@@ -62,9 +63,27 @@ class TrainInfoTest {
         assertEquals("<1 min", trainInfo.getFormattedTimeToDeparture());
     }
 
+
+    @Test
+    @DisplayName("Test with same plannedDepartureTime and actualDepartureTime")
+    void testGetDepartureDelayInMinutes() {
+        var trainInfo = getTrainInfo("16:20", "16:20");
+        assertTrue(StringUtils.isBlank(trainInfo.getDepartureDelayInMinutes()));
+    }
+
+    @Test
+    @DisplayName("Test with different plannedDepartureTime and actualDepartureTime")
+    void testGetDepartureDelayInMinutes2() {
+        var trainInfo = getTrainInfo("16:20", "16:27");
+        assertAll(
+                ()->assertFalse(StringUtils.isBlank(trainInfo.getDepartureDelayInMinutes())),
+                ()->assertEquals("7",trainInfo.getDepartureDelayInMinutes())
+        );
+    }
+
     @NotNull
     private TrainInfo getTrainInfo(String departureStatus, boolean isCancelled) {
-        return new TrainInfo("Utrecht", "16:20",
+        return new TrainInfo("Utrecht", "16:20","16:20",
                 "3",
                 "SPR",
                 "Tiel",
@@ -72,9 +91,15 @@ class TrainInfoTest {
                 isCancelled
         );
     }
+
    @NotNull
-    private TrainInfo getTrainInfo(String actualDepartureTime) {
-        return new TrainInfo("Utrecht", actualDepartureTime,
+   private TrainInfo getTrainInfo(String actualDepartureTime) {
+        return getTrainInfo( actualDepartureTime,actualDepartureTime);
+    }
+
+    @NotNull
+    private TrainInfo getTrainInfo(String plannedDepartureTime, String actualDepartureTime) {
+        return new TrainInfo("Utrecht", plannedDepartureTime, actualDepartureTime,
                 "3",
                 "SPR",
                 "Tiel",
@@ -82,6 +107,4 @@ class TrainInfoTest {
                 false
         );
     }
-
-
 }

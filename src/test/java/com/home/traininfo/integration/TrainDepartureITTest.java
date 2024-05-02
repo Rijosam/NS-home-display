@@ -58,7 +58,7 @@ class TrainDepartureITTest {
                 () -> assertEquals(6, departureInfo.size()),
                 () -> assertEquals("Arnhem Centraal", departureInfo.get(0).direction()),
                 () -> assertEquals(Status.ON_STATION, departureInfo.get(0).status()),
-                () -> assertEquals("08:17", departureInfo.get(0).actualDepartureTime()),
+                () -> assertEquals("08:17", departureInfo.get(0).departureTime()),
                 () -> assertEquals("2", departureInfo.get(0).actualTrack()),
                 () -> assertEquals("Kesteren, Opheusden, Hemmen-Dodew., Elst",
                         departureInfo.get(0).routeStations())
@@ -95,12 +95,27 @@ class TrainDepartureITTest {
         );
     }
 
+    @Test
+    @DisplayName("Response with a delayed train")
+    void testTrainDepartureService5() {
+        trainDepartureService = new TrainService("8400598",infoProvider, defaultNightTimeChecker);
+        var departureInfo = trainDepartureService.getDepartureInfo();
+        assertAll(
+                () -> assertFalse(departureInfo.isEmpty()),
+                () -> assertEquals("10",departureInfo.get(0).departureDelayInMinutes())
+        );
+    }
+
 
     void setStubs() {
         wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400597&maxJourneys=5"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withBodyFile("response-8400597.json")));
+        wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400598&maxJourneys=5"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBodyFile("response-8400598.json")));
 
         wireMockServer.stubFor(get(urlEqualTo("/api/v2/departures?uicCode=8400596&maxJourneys=5"))
                 .willReturn(aResponse()
