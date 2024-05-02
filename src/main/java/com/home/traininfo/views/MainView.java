@@ -13,15 +13,19 @@ import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.function.SerializableBiConsumer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
 @PageTitle("Main")
 @Route(value = "")
 public class MainView extends VerticalLayout {
+    private final TrainDepartureService trainDepartureService;
+    private final Grid<TrainDeparture> grid;
 
-    public MainView(final TrainDepartureService trainDepartureService) {
-        Grid<TrainDeparture> grid = new Grid<>();
+    public MainView(TrainDepartureService trainDepartureService) {
+        this.trainDepartureService = trainDepartureService;
+        grid = new Grid<>();
         List<TrainDeparture> trainDepartures = trainDepartureService.getDepartureInfo();
         grid.setItems(trainDepartures);
         grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
@@ -33,6 +37,12 @@ public class MainView extends VerticalLayout {
         add(grid);
     }
 
+    // executed at the start of every minute.
+    @Scheduled(cron = "0 * * * * ?")
+    public void updateGrid() {
+        var trainDepartures = trainDepartureService.getDepartureInfo();
+        getUI().ifPresent(ui -> ui.access(() -> grid.setItems(trainDepartures)));
+    }
 
     private static Renderer<TrainDeparture> createDirectionRenderer() {
         return LitRenderer.<TrainDeparture>of(
