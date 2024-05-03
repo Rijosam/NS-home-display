@@ -13,25 +13,27 @@ import static com.home.traininfo.admin.Station.getStationCodeFromDisplayName;
 @Route("admin")
 public class AdminView extends VerticalLayout {
 
-    private final TrainDepartureService trainDepartureService;
+    private final transient TrainDepartureService trainDepartureService;
 
-    public AdminView(TrainDepartureService trainDepartureService) {
+    public AdminView(final TrainDepartureService trainDepartureService) {
         this.trainDepartureService = trainDepartureService;
-        ComboBox<String> comboBox = new ComboBox<>("Select the station");
+        ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.setPlaceholder("Select Station");
+        comboBox.setClearButtonVisible(true);
         comboBox.setItems(Arrays.stream(Station.values())
                 .map(Station::getDisplayName).toList());
-
         comboBox.addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                callFunction(event.getValue());
+                setStationCode(event.getValue());
             }
         });
         add(comboBox);
     }
 
-    private void callFunction(String value) {
-        Notification.show("Selected: " + value);
-        trainDepartureService.setStationUicCode(getStationCodeFromDisplayName(value));
+    private void setStationCode(String selectedStationName) {
+        Notification.show("Selected Station: " + selectedStationName);
+        trainDepartureService
+                .setStationUicCode(getStationCodeFromDisplayName(selectedStationName));
     }
 }
 
