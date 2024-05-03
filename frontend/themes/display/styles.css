@@ -60,12 +60,12 @@ body {
 vaadin-combo-box {
     background-color: white;
     font-size: xx-large;
-    padding: 30px;
+    padding: 20px;
 }
 
 vaadin-combo-box-item {
     font-size: x-large;
-    padding: 50px;
+    padding: 30px;
 }
 
 
