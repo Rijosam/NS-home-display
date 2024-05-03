@@ -47,4 +47,9 @@ public class TrainService implements TrainDepartureService {
     public void setStationUicCode(String stationUicCode) {
         this.stationUicCode = stationUicCode;
     }
+
+    @Override
+    public String getStationUicCode() {
+        return stationUicCode;
+    }
 }

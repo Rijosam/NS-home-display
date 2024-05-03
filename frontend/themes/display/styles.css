@@ -68,6 +68,15 @@ vaadin-combo-box-item {
     padding: 30px;
 }
 
+vaadin-text-field {
+    background-color: white;
+    font-size: xx-large;
+    padding: 20px;
+}
+
+vaadin-text-field::part(label) {
+    font-size: x-large;
+}
 
 vaadin-grid {
     height: 900px;

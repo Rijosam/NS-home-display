@@ -8,5 +8,6 @@ public interface TrainDepartureService {
 
     List<TrainDeparture> getDepartureInfo();
     void setStationUicCode(String stationUicCode);
+    String getStationUicCode();
 }
 

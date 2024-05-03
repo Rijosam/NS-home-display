@@ -35,4 +35,12 @@ public enum Station {
                 .orElseThrow(() -> new IllegalArgumentException("No enum found with display name: " + displayName));
         return station.getStationCode();
     }
+
+    public static String getDisplayNameFromStationCode(String stationCode) {
+        Station station = Arrays.stream(Station.values())
+                .filter(value -> value.getStationCode().equals(stationCode))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No enum found with station code: " + stationCode));
+        return station.getDisplayName();
+    }
 }
