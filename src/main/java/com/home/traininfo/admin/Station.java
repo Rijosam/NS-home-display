@@ -3,12 +3,14 @@ package com.home.traininfo.admin;
 import java.util.Arrays;
 
 public enum Station {
-    TIEL("Tiel","8400596"),
-    AMSTERDAM("Amsterdam C","8400058"),
-    ROTTERDAM("Rotterdam C","8400530"),
-    EINDHOVEN("Eindhoven C","8400206"),
+    AMSTERDAM("Amsterdam Centraal","8400058"),
     AMSTERDAM_ZUID("Amsterdam Zuid","8400061"),
-    UTRECHT("Utrecht","8400621");
+    ARNHEM_CENTRAL("Arnhem Centraal","8400071"),
+    EINDHOVEN("Eindhoven Centraal","8400206"),
+    ROTTERDAM("Rotterdam Centraal","8400530"),
+    TIEL("Tiel","8400596"),
+    UTRECHT("Utrecht Centraal","8400621"),
+    ZAANDAM("Zaandam","8400731");
 
     private final String displayName;
     private final String stationCode;
