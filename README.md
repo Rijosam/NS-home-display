@@ -35,5 +35,12 @@ cd NS-home-display
 ```
 Once the application is successfully run, it starts in your browser at http://localhost:8097/
 
+### Changing the station
 
+By default, the application is set to display information for the Tiel railway station. To customize this setting:
 
+1. Launch the Admin Portal: Navigate to http://localhost:8097/admin in your web browser.
+2. Select a Station: Choose a station from the list of preconfigured stations. 
+3. Add a New Station: If you need to include a new station in the list, modify the `Station` enum in the codebase to add your desired station.
+
+This setup allows flexibility in tailoring the application to different railway stations as needed.
