@@ -88,10 +88,10 @@ public class MainView extends VerticalLayout {
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
                                 + " <span part=\"platformStyle\"><span .innerHTML=\"${item.actualTrack}\"></span></span>"
                                 + "</vaadin-horizontal-layout>")
-                .withProperty("actualTrack", MainView::getTrackIfTrain);
+                .withProperty("actualTrack", MainView::getTrackOrBusIcon);
     }
 
-    private static String getTrackIfTrain(TrainDeparture trainDeparture) {
+    private static String getTrackOrBusIcon(TrainDeparture trainDeparture) {
         if (trainDeparture.trainCategory().equals("BUS")) {
             return getBusIcon();
         } else {
