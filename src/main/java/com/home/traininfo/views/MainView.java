@@ -1,5 +1,6 @@
 package com.home.traininfo.views;
 
+import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.home.traininfo.application.TrainDepartureService;
 import com.home.traininfo.domain.Status;
 import com.home.traininfo.domain.TrainDeparture;
@@ -85,10 +86,24 @@ public class MainView extends VerticalLayout {
     private static Renderer<TrainDeparture> createPlatformRenderer() {
         return LitRenderer.<TrainDeparture>of(
                         "<vaadin-horizontal-layout style=\"align-items: center;\" theme=\"spacing\">"
-                                + "    <span part=\"platformStyle\"> ${item.actualTrack} </span>"
+                                + " <span part=\"platformStyle\"><span .innerHTML=\"${item.actualTrack}\"></span></span>"
                                 + "</vaadin-horizontal-layout>")
-                .withProperty("actualTrack", TrainDeparture::actualTrack);
+                .withProperty("actualTrack", MainView::getTrackIfTrain);
     }
+
+    private static String getTrackIfTrain(TrainDeparture trainDeparture) {
+        if (trainDeparture.trainCategory().equals("BUS")) {
+            return getBusIcon();
+        } else {
+            return trainDeparture.actualTrack();
+        }
+    }
+
+    private static String getBusIcon() {
+        return "<vaadin-icon style='margin-left: -20%' icon='"
+                + FontAwesome.Solid.VAN_SHUTTLE.getIconName() + "'></vaadin-icon>";
+    }
+
 
     private static Renderer<TrainDeparture> createTimeToDepartureRenderer() {
         return LitRenderer.<TrainDeparture>of(
