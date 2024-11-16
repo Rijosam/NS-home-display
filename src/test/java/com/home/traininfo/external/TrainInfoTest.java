@@ -63,6 +63,20 @@ class TrainInfoTest {
         assertEquals("<1 min", trainInfo.getFormattedTimeToDeparture());
     }
 
+    @Test
+    @DisplayName("Train with TimeToDeparture less than 0 min")
+    void testGetFormattedTimeToDeparture5() {
+        var trainInfo = getTrainInfo(LocalTime.now().minusMinutes(1).toString());
+        assertEquals("<1 min", trainInfo.getFormattedTimeToDeparture());
+    }
+
+    @Test
+    @DisplayName("Cancelled Train")
+    void testGetFormattedTimeToDeparture6() {
+        var trainInfo = getTrainInfo("INCOMING", true);
+        assertEquals("", trainInfo.getFormattedTimeToDeparture());
+    }
+
 
     @Test
     @DisplayName("Test with same plannedDepartureTime and actualDepartureTime")

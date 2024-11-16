@@ -20,12 +20,15 @@ public record TrainInfo(String direction,
     }
 
     public String getFormattedTimeToDeparture() {
+        if(isCancelled){
+            return StringUtils.EMPTY;
+        }
         var timeToDepartureDuration = Duration.between(LocalTime.now(),
                 LocalTime.parse(actualDepartureTime));
         var hours = timeToDepartureDuration.toHours();
         var minutes = timeToDepartureDuration.toMinutesPart();
 
-        if (hours == 0 && minutes == 0) {
+        if (hours == 0 && minutes <= 0) {
             return "<1 min";
         } else if (hours == 0) {
             return minutes + " min";
