@@ -1,6 +1,9 @@
 # NS Home Display
 
 ## Overview
+
+![ns_display_image](./docs/images/ns_display.jpg)
+
 NS Home Display is an innovative solution designed to enhance your home with real-time display of railway information.
 This project aims to provide a convenient and visually appealing way to keep track of the trains departing from your favourite stations.
 
